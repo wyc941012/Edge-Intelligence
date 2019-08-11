@@ -1,0 +1,28 @@
+Raspberry系统安装：
+下载Raspberry系统镜像文件
+安装SDFormatter，格式化TF卡
+安装Win32DiskImager，将系统写入TF卡中
+在TF卡中/boot目录下新建wpa_supplicant.conf 文件，文件内容如下
+country=CN
+ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+
+network={
+ssid="hhuer"
+psk="hhu4208@"
+key_mgmt=WPA-PSK
+priority=2
+scan_ssid=1
+}
+
+在TF卡中新建ssh文件夹
+将TF卡插到树莓派上，启动系统
+
+
+Raspberry系统下安装Python及Tensorflow:
+sudo apt-get install python3-pip python3-dev
+sudo apt-get install libblas-dev liblapack-dev libatlas-base-dev 
+pip3 install numpy
+pip3 install scipy
+pip3 install sklearn
+pip3 install tensorflow.whl(下载文件)
