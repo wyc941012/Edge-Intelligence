@@ -30,7 +30,7 @@ class Data(object):
 		self.endLayer=endLayer
 
 def run(model, inputData, startLayer, endLayer):
-	print("移动端运行%d到%d层" % (startLayer, endLayer))
+	print("Mobile running %d to %d layer" % (startLayer, endLayer))
 	outputs = model(inputData, startLayer, endLayer, False)
 	return outputs
 
@@ -62,7 +62,7 @@ def receiveData(client, model, x, test_x, test_y):
 		if data.startLayer>=len(x):
 			acc=test(outputs, test_x, test_y)
 			end=time.time()
-			print("计算任务运行完成，响应时间为：%f，准确率为：%f" % (runtime, acc))
+			print("Compute task completed with response time: %f, accuracy: %f" % (runtime, acc))
 			client.close()
 			break
 		else:
@@ -75,7 +75,7 @@ def receiveData(client, model, x, test_x, test_y):
 			if count==len(x)-1:
 				acc=test(outputs, test_x, test_y)
 				end=time.time()
-				print("计算任务运行完成，响应时间为：%f，准确率为：%f" % (runtime, acc))
+				print("Compute task completed with response time: %f, accuracy: %f" % (runtime, acc))
 				client.close()
 				break
 			else:
@@ -93,13 +93,13 @@ if __name__=="__main__":
 	test_x,test_y,test_l=get_data_set("test")
 	test_x=torch.from_numpy(test_x[0:100]).float()
 	test_y=torch.from_numpy(test_y[0:100]).long()
-	print("模型加载成功")
+	print("Model loaded successfully.")
 	client=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	client.connect((IP, PORT))
-	print("云端连接成功，准备提交计算任务")
-	print("任务已提交，进行卸载决策")
+	print("Cloud connection successful, ready for computing mission")
+	print("Task submitted. Unload decision made")
 	x=[1,1,1,1,1,1,1,1,1,1,1,1,1]
-	print("开始运行计算任务")
+	print("Start running computational tasks")
 	start=time.time()
 	if x[0]==1:
 		count=0
@@ -121,7 +121,7 @@ if __name__=="__main__":
 		if count==len(x)-1:
 			acc=test(outputs, test_x, test_y)
 			end=time.time()
-			print("计算任务运行完成，响应时间为：%f，准确率为：%f" % (runtime, acc))
+			print("Compute task completed with response time: %f, accuracy: %f" % (runtime, acc))
 			client.close()
 		else:
 			endLayer=0
