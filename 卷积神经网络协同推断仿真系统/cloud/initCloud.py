@@ -30,7 +30,7 @@ class Data(object):
 		self.endLayer=endLayer
 
 def run(model, inputData, startLayer, endLayer):
-	print("云端运行%d到%d层" % (startLayer, endLayer))
+	print("Cloud running %d to %d layer" % (startLayer, endLayer))
 	outputs = model(inputData, startLayer, endLayer, False)
 	return outputs
 
@@ -67,11 +67,11 @@ if __name__=="__main__":
 	test_x,test_y,test_l=get_data_set("test")
 	test_x=torch.from_numpy(test_x[0:10]).float()
 	test_y=torch.from_numpy(test_y[0:10]).long()
-	print("模型加载成功")
+	print("Model loaded successfully.")
 	server=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 	server.setblocking(1)
 	server.bind((IP, PORT))
-	print("云端启动，准备接受任务")
+	print("Cloud activated, ready for mission")
 	server.listen(1)
 	receiveData(server, model)
 
