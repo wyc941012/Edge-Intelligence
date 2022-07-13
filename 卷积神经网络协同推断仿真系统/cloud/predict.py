@@ -20,10 +20,10 @@ model=torch.load(_SAVE_PATH+"layermodel.pkl", map_location='cpu')
 device = torch.device("cpu")
 #model.to(device)
 
-# 定义数据库
+# definition database
 test_dataset = Data.TensorDataset(test_x, test_y)
 
-# 定义数据加载器
+# definition data loader
 test_loader = Data.DataLoader(dataset = test_dataset, batch_size = _BATCH_SIZE, shuffle = False)
 
 
